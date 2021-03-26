@@ -1,0 +1,60 @@
+﻿@model QuanLyNhanSu.Models.TAIKHOAN
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="~/Content/Css/Style_Login.css" rel="stylesheet" />
+</head>
+<body class="backgr_login">
+    <div align="center" style="margin-top:150px; margin-bottom:100px;">
+        <div style="width:500px; height:450px;">
+            <div class="login">
+                <img src="~/Content/Images/demo_uGLWKp.png" alt="image" />
+                <div style="font-family:yanonekaffeesatz-light,Arial,sans-serif; font-size:30px; color:#333; margin-top:25px;">Employee Login</div>
+                @using (Html.BeginForm("Login","Login", FormMethod.Post))
+                {
+                <div align="center" style="margin-top:20px;">
+                    <div style="float:left; margin-left: 70px;">User name</div>
+                    <div style="float:left; margin-left:25px;">
+                        @Html.TextBoxFor(m => m.TenTaiKhoan, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TenTaiKhoan)
+                    </div>
+                    <br />
+                    <br />
+                    <div style="float:left; margin-left: 70px;">Password</div>
+                    <div style="float:left; margin-left:32px;">
+                        @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.MatKhau)
+                    </div>
+                    <div style="float:left; margin-left: 70px; color:red;">
+                        @if (ViewBag.error != null)
+                        {
+                            @ViewBag.error
+                        }
+                    </div>
+                    <br />
+                    <br />
+                    <div style="float:left; margin-left: 70px;"><input id="cb" type="checkbox" checked="checked" />Remember Me</div>
+                    <br />
+                    <br />
+                    <input style="width: 150px; float:left; margin-left: 70px;" type="submit" class="btn btn-primary" value="Login">
+                    <br />
+                    <br />
+                    <div style="margin-left:70px; float:left;"><a href="#">Forgot your password ?</a></div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

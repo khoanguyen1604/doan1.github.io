@@ -1,0 +1,110 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.HopDong>
+
+@{
+    ViewBag.Title = "DanhSachHopDong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            @using (Html.BeginForm("DanhSachHopDong", "HopDong"))
+            {
+                <div class="form-group">
+                    <b>@Html.Label("Tìm kiếm")</b>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @Html.Editor("ten", new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-lg-4">
+                                <input style="display:inline" type="submit" class="btn btn-primary" value="Lọc" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Danh sách hợp đồng
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>Hình ảnh</th>
+                        <th>
+                            Tên nhân viên
+                        </th>
+                        <th>
+                            Ngày bắt đầu
+                        </th>
+                        <th>
+                            Ngày kết thúc
+                        </th>
+                        <th>
+                            Ngày ký
+                        </th>
+                        <th>
+                            Nội dung
+                        </th>
+                        <th>Tác vụ</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/Content/Images/@Url.Content(item.NhanVien.HinhAnh)" style="width:100px; height:100px;" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NhanVien.FirstName) @Html.DisplayFor(modelItem => item.NhanVien.LastName)
+                            </td>
+                            @{
+                                var ngaybatdau = item.NgayBatDau.ToString("dd/MM/yyyy");
+                                var ngayketthuc = item.NgayKetThuc.ToString("dd/MM/yyyy");
+                                var ngayky = item.NgayKy.ToString("dd/MM/yyyy");
+
+                            }
+                            <td>
+                                @ngaybatdau
+                            </td>
+                            <td>
+                                @ngayketthuc
+                            </td>
+                            <td>
+                                @ngayky
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NoiDung)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Sua", "HopDong", new { id = item.ID })">
+                                    <input type="submit" value="Sửa" class="btn btn-primary" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="7">
+                            <a href="/HopDong/Them">
+                                <input type="submit" value="Thêm" class="btn btn-primary" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+
+

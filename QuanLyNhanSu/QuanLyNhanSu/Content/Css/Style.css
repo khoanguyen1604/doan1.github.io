@@ -1,0 +1,58 @@
+﻿.tennhanvien {
+    display: block;
+    height:35px;
+    /*background-color: #edeced;*/
+    text-align: center;
+    -moz-box-shadow: inset 0 0 40px #ebeaeb;
+    -webkit-box-shadow: inset 0 0 40px #ebeaeb;
+    box-shadow: inset 0 0 40px #ebeaeb;
+}
+.nhanvien {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+#thongtin ul {
+    padding:0;
+    background-color: #fa8f35;
+    border-radius:3px;
+}
+#thongtin ul li {
+    display:block;
+    padding-left:10px;
+    padding-top:5px;
+    padding-right:10px;
+    text-align:left;
+    text-decoration:none;
+    list-style-type:none;
+}
+#thongtin ul li a.active{
+    display:block;
+    text-decoration:none;
+    color:white;
+    background-color:#555659;
+    border-radius:3px;
+}
+#thongtin ul li a{
+    padding:0 5px 0 10px;
+    text-decoration:none;
+    color:black;
+}
+#thongtin ul li a:hover{
+    display:block;
+    text-decoration:none;
+    color:white;
+    background-color:#d87219;
+    border-radius:3px;
+}
+
+.tablecustom {
+    background-color: #f8f6f8;
+    border:1px solid #ccc;
+}
+.output {
+    display: block;
+    background-color: #deddde;
+    border-radius: 3px;
+    height:30px;
+    padding-top:2px;
+}

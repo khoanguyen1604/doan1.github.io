@@ -1,0 +1,109 @@
+﻿@model PagedList.IPagedList<QuanLyNhanSu.Models.CHAMCONG>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "ChamCong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
+</head>
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            @using (Html.BeginForm("ChamCong", "ChamCong"))
+            {
+                <div class="form-group">
+                    <b>@Html.Label("Ngày chấm công")</b>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @Html.Editor("ngay", new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            </div>
+                            <div class="col-lg-4">
+                                <input style="display:inline" type="submit" class="btn btn-primary" value="Lọc" />
+                                <a href="@Url.Action("TaoMoi","ChamCong")"><input style="display:inline" type="button" class="btn btn-primary" value="Tạo mới" /></a>
+                                @if (ViewBag.thongbao_cc != null)
+                                {
+                                    <div style="color:red">@ViewBag.thongbao_cc</div>
+                                }
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-lg-12">
+                                @Html.Label("Tất cả")
+                                @Html.RadioButton("chamcong", "tatca", true)
+                                @Html.Label("Chưa chấm công")
+                                @Html.RadioButton("chamcong", "chuacham")
+                                @Html.Label("Đã chấm công")
+                                @Html.RadioButton("chamcong", "dacham")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Chấm công
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Hình ảnh</th>
+                        <th>Họ Tên</th>
+                        <th>Trạng thái</th>
+                        <th>Tác vụ</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/Content/Images/@Url.Content(item.Nhanvien.HinhAnh)" style="width:100px; height:100px;" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Nhanvien.FirstName) @Html.DisplayFor(m => item.Nhanvien.LastName)
+                            </td>
+                            <td>
+                                @if (item.TrangThai == null)
+                                {
+                                    <div>Chưa chấm công</div>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(m => item.TrangThai)
+                                }
+
+                            </td>
+                            <td>
+                                <a href="@Url.Action("dunggio","ChamCong", new { id = item.IDChamCong })"><input type="submit" class="btn btn-primary" value="Đúng giờ" /></a>
+                                <a href="@Url.Action("ditre","ChamCong", new { id = item.IDChamCong })"><input type="submit" class="btn btn-primary" value="Đi trễ" /></a>
+                                <a href="@Url.Action("nghi","ChamCong", new { id = item.IDChamCong })"><input type="submit" class="btn btn-primary" value="Nghỉ" /></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                @Html.PagedListPager(Model, trang => Url.Action("ChamCong", new { trang }))
+            </div>
+            
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+

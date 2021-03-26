@@ -1,0 +1,58 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.TAIKHOAN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <h4>Danh sách tài khoản</h4>
+            <br />
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Tên nhân viên")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Tên tài khoản")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Mật khẩu")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Tác vụ")
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nhanvien.FirstName) @Html.DisplayFor(modelItem => item.nhanvien.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenTaiKhoan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatKhau)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("DeleteConfirmed", "TAIKHOANs", new { id = item.MaTaiKhoan })"><input type="submit" class="btn btn-primary" value="Xóa" /></a>
+                            <a href="@Url.Action("ResetPassword", "TAIKHOANs", new { id = item.MaTaiKhoan })"><input type="submit" class="btn btn-primary" value="Reset" /></a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="4">
+                        <a href="@Url.Action("Create","TAIKHOANs")"><input type="submit" class="btn btn-primary" value="Thêm" /></a>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>

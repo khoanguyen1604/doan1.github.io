@@ -1,0 +1,110 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.KhenThuongKyLuat>
+@{
+    ViewBag.Title = "KhenThuongKyLuat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            @using (Html.BeginForm("KhenThuongKyLuat", "KhenThuongKyLuat"))
+            {
+                <div class="form-group">
+                    <b>@Html.Label("Ngày")</b>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @Html.Editor("ngay", new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            </div>
+                            <div class="col-lg-4">
+                                <input style="display:inline" type="submit" class="btn btn-primary" value="Lọc" />
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-lg-12">
+                                @Html.Label("Tất cả")
+                                @Html.RadioButton("ktkl", "tatca", true)
+                                @Html.Label("Khen thưởng")
+                                @Html.RadioButton("ktkl", "khenthuong")
+                                @Html.Label("Kỷ luật")
+                                @Html.RadioButton("ktkl", "kyluat")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Khen thưởng kỷ luật
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Hình ảnh</th>
+                        <th>Họ Tên</th>
+                        <th>Chức Vụ</th>
+                        <th>Phòng ban</th>
+                        <th>Loại</th>
+                        <th>Tiêu đề</th>
+                        <th>Ghi chú</th>
+                        <th>Tác vụ</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/Content/Images/@Url.Content(item.Nhanvien.HinhAnh)" style="width:100px; height:100px;" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.Nhanvien.FirstName) @Html.DisplayFor(model => item.Nhanvien.LastName)
+                            </td>
+                            <td>@Html.DisplayFor(model => item.Nhanvien.ChucVu.TenChucVu)</td>
+                            <td>@Html.DisplayFor(model => item.Nhanvien.PhongBan.TenPhongBan)</td>
+                            <td>
+                                @if (item.Loai == false)
+                                {
+                                    <div>Kỷ luật</div>
+                                }
+                                else
+                                {
+                                    <div>Khen thưởng</div>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.TieuDe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.GhiChu)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Sua", "KhenThuongKyLuat", new { id = item.ID })"><input type="submit" class="btn btn-primary" value="Sửa" /></a>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="8"><a href="/KhenThuongKyLuat/Them"><input type="submit" class="btn btn-primary" value="Thêm" /></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>

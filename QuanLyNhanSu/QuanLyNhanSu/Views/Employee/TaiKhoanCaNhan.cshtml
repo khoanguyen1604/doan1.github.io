@@ -1,0 +1,35 @@
+﻿@model QuanLyNhanSu.Models.TAIKHOAN
+@{
+    ViewBag.Title = "TaiKhoanCaNhan";
+    Layout = "~/Views/Shared/_Layout_NhanVien.cshtml";
+}
+<head>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-11">
+            <div class="card">
+                <div class="card-header">
+                    Tài Khoản cá nhân
+                </div>
+            </div>
+            <table class="table table-striped" style="border:1px solid #ccc">
+                <tr style="background-color:#fa8f35;">
+                    <th>Email</th>
+                    <th>Mật Khẩu</th>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayFor(m => m.TenTaiKhoan)</td>
+                    <td>@Html.DisplayFor(m => m.MatKhau)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a href="/Login/ThayDoiMatKhau"><input type="submit" class="btn btn-primary" value="Thay đổi mật khẩu" /></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>

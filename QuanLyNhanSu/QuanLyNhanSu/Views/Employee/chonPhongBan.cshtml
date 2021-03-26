@@ -1,0 +1,2 @@
+﻿@model QuanLyNhanSu.Models.PHONGBAN
+@Html.DropDownListFor(Model => Model.MaPhongBan, new SelectList(Model.listphongban, "MaPhongBan", "TenPhongBan", "__select__"), new { style = "width: 500px; height: 35px; border-radius: 5px; border:1px solid #ccc;" })

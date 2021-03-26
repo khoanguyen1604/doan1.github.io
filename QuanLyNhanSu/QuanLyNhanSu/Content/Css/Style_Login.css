@@ -1,0 +1,47 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+
+.backgr_login {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://cdn.webhr.co/images/Backgrounds/LoginBG133.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-color:aqua;*/
+}
+
+.login {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #fff;
+    opacity: 0.9;
+}
+
+    .login img {
+        width: 250px;
+        height: 65px;
+        margin-top: 10px;
+    }
+
+input {
+    line-height: 20px;
+    width: 220px;
+}
+
+#cb {
+    width: 13px;
+    line-height: 0;
+}
+
+.icon-key-1:before {
+    content: '\e918';
+    font-family: fontello;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}

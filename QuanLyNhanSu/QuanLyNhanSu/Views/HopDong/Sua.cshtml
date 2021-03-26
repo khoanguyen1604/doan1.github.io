@@ -1,0 +1,95 @@
+﻿@model QuanLyNhanSu.Models.HopDong
+
+@{
+    ViewBag.Title = "Sua";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => Model.ID)
+                    @Html.HiddenFor(model => Model.MaNhanVien)
+                    <div class="form-horizontal">
+                        <h4>Hợp Đồng</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <b>@Html.Label("Tên nhân viên", htmlAttributes: new { @class = "control-label col-md-2" })</b>
+                            <div class="col-md-2">
+                                <div style="background-color:#dddddd; border-radius:3px; padding:2px;">
+                                    @Html.DisplayFor(model => Model.NhanVien.FirstName) @Html.DisplayFor(model => Model.NhanVien.LastName)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NgayBatDau, "Ngày bắt đầu", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.NgayBatDau, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                @Html.ValidationMessageFor(model => model.NgayBatDau, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NgayKetThuc, "Ngày kết thúc", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.NgayKetThuc, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                @Html.ValidationMessageFor(model => model.NgayKetThuc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NgayKy, "Ngày ký", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.NgayKy, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                @Html.ValidationMessageFor(model => model.NgayKy, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NoiDung, "Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Lưu" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div>
+                    @Html.ActionLink("Quay lại", "DanhSachHopDong")
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+

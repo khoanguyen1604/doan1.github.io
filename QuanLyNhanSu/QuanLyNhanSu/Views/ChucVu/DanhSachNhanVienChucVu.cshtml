@@ -1,0 +1,66 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.NHANVIEN>
+
+@{
+    ViewBag.Title = "DanhSachNhanVienChucVu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <h4 style="text-align:center;">Danh sách nhân viên</h4>
+            <br />
+            <table class="table table-striped" style="border: 1px solid #ccc">
+                <tr>
+                    <th>
+                        Hình ảnh
+                    </th>
+                    <th>
+                        Mã nhân viên
+                    </th>
+                    <th>
+                        Họ tên
+                    </th>
+                    <th>
+                        Phòng ban
+                    </th>
+                    <th>
+                        Chức vụ
+                    </th>
+                    <th>Tác vụ</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/Content/Images/@Url.Content(item.HinhAnh)" style="width:100px; height:100px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaNhanVien)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhongBan.TenPhongBan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChucVu.TenChucVu)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("XoaNhanVienChucVu","ChucVu", new { id = item.MaNhanVien })"><input type="submit" class="btn btn-primary" value="Xóa" /></a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+

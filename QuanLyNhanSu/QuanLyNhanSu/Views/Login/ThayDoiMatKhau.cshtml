@@ -1,0 +1,83 @@
+﻿@model QuanLyNhanSu.Models.TAIKHOAN
+
+@{
+    ViewBag.Title = "ThayDoiMatKhau";
+    if (Session["ma"].ToString() == "QL")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout_NhanVien_TacVu.cshtml";
+    }
+}
+
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        @*<div class="col-lg-1"></div>*@
+        <div class="col-lg-4"></div>
+        <div class="col-lg-3" style="border: 1px solid #ccc; border-radius:3px;">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <br />
+                    <h4 style="text-align:center">Thay đổi mật khẩu</h4>
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaTaiKhoan)
+                    @Html.HiddenFor(model => model.TenTaiKhoan)
+
+                    <div class="form-group">
+                        <b>@Html.LabelFor(model => model.TenTaiKhoan, "Tên tài khoản", htmlAttributes: new { @class = "control-label col-md-5" })</b>
+                        <div class="col-md-12">
+                            <div style="background-color:#ccc; border-radius:2px; padding:2px 0 2px 10px;">@Model.TenTaiKhoan</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <b>@Html.LabelFor(model => model.MatKhau, "Mật khẩu", htmlAttributes: new { @class = "control-label col-md-5" })</b>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <b>@Html.LabelFor(model => model.NhapLaiMatKhau, "Nhập lại mật khẩu", htmlAttributes: new { @class = "control-label col-md-5" })</b>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.NhapLaiMatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NhapLaiMatKhau, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Lưu" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @{ 
+                if (Session["ma"].ToString() == "QL")
+                {
+                    <div style="margin-left:12px;">
+                        @Html.ActionLink("Quay lại", "TaiKhoanCaNhan_Admin", "Employee")
+                    </div>
+                }
+                else
+                {
+                    <div style="margin-left:12px;">
+                        @Html.ActionLink("Quay lại", "TaiKhoanCaNhan", "Employee")
+                    </div>
+                }
+            }
+
+            
+        </div>
+        <div class="col-lg-5"></div>
+    </div>
+</body>

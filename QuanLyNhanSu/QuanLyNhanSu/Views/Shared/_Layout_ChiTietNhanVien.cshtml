@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link href="~/Content/Css/Style_layout.css" rel="stylesheet" />
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            var current = location.pathname;
+            //$('.submenu ul li a').removeClass('active')
+            $('.submenu ul li a').each(function () {
+                var $this = $(this);
+                if ($this.attr('href').indexOf(current) !== -1) {
+                    $this.addClass('active')
+                    $this.parents(".menu > ul > li").addClass('active')
+                }
+            })
+        })
+        $(function () {
+            $('.menu > ul li.a').addClass('active')
+            $('.submenu > ul li .b').addClass('active')
+            var current1 = location.pathname;
+            $('#thongtin ul li a').removeClass('active')
+            $('#thongtin ul li a').each(function () {
+                var $this = $(this);
+                if ($this.attr('href').indexOf(current1) !== -1) {
+                    $this.addClass('active')
+                    $('.menu > ul li.a').addClass('active')
+                    $('.submenu > ul li .b').addClass('active')
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <div class="top container-fluid" align="center">
+            <div><img style="width: 100%; height:100%;" src="~/Content/Images/banner_IHRM.jpg" alt="image banner" /></div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="/TAIKHOANs/Index">Chức năng chung</a>
+                        <div class="submenu">
+                            <ul>
+                                <li><a href="/TAIKHOANs/Index">Tài khoản</a></li>
+                                <li><a href="/PhongBan/DanhSachPhongBan">Phòng ban</a></li>
+                                <li><a href="/ChucVu/ChucVu">Chức vụ</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="a">
+                        <a href="/Employee/HoSoNhanSu">Quản lý hồ sơ</a>
+                        <div class="submenu">
+                            <ul>
+                                <li><a class="b" href="/Employee/HoSoNhanSu">Hồ sơ nhân sự</a></li>
+                                <li><a href="/Employee/ThongTinCaNhan_Admin">Hồ sơ cá nhân</a></li>
+                                @*<li><a href="#">Quá trình công tác</a></li>*@
+                                <li><a href="/KhenThuongKyLuat/KhenThuongKyLuat">Khen thưởng kỷ luật</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/ChamCong/ChamCong">Chấm công</a>
+                        <div class="submenu">
+                            <ul>
+                                <li><a href="/ChamCong/ChamCong">Bảng chấm công</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Theo dõi nhân sự</a>
+                        <div class="submenu">
+                            <ul>
+                                <li><a href="#">Hợp đồng</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/BangLuong/BangLuong">Tính lương</a>
+                    </li>
+                    @*<li>
+                        <a href="#">Đánh giá</a>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <br />
+                                <div class="card">
+                                    <div class="card-header" style="text-align:center;">
+                                        <b>@Session["chitietten"]</b>
+                                    </div>
+                                    <img src="~/Content/Images/@Session["chitiethinhanh"]" class="card-img-bottom" style="width:100%;" />
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row" id="thongtin">
+                            <div class="col-lg-10">
+                                <ul>
+                                    <li class="active"><a href="/Employee/XemChiTietHoSo">Thông tin cá nhân</a></li>
+                                    <li><a href="/Employee/XemChiTietLienLac/@Session["id"]">Chi tiết liên lạc</a></li>
+                                    <li><a href="#">Quan hệ người thân</a></li>
+                                    <li><a href="#">Công việc</a></li>
+                                    <li><a href="/Employee/XemChiTietMucLuong">Mức lương</a></li>
+                                    <li><a href="#">Trình độ chuyên môn</a></li>
+                                    <li><a href="/Employee/XemChiTietTaiKhoan">Tài khoản cá nhân</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer" style="text-align:center; margin-top:50px;">Vui lòng không lưu mật khẩu</div>
+        <div class="footer" style="text-align:center; margin-bottom:50px;">	&#64; 2019-2020 | <u>Hướng dẫn sử dụng</u> | <u>Phần mềm nhân sự</u> | <u>Phần mềm công việc</u></div>
+    </footer>
+</body>
+</html>

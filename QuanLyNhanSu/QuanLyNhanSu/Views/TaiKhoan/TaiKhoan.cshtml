@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "TaiKhoan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Danh sách phòng ban
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>Mật Khẩu</th>
+                        <th>Chức năng</th>
+                    </tr>
+                    <tr>
+                        <td>Nguyễn Văn Ngu</td>
+                        <td>email@email.com</td>
+                        <td>123456</td>
+                        <td>
+                            <button class="btn btn-primary">Reset Password</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            @*<button class="btn btn-primary">Thêm Nhân vie</button>*@
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+

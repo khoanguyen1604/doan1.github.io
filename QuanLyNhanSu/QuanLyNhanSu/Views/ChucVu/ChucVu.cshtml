@@ -1,0 +1,56 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.CHUCVU>
+@{
+    ViewBag.Title = "ChucVu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Chức vụ
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Tên Chức vụ</th>
+                        <th>Hệ số lương</th>
+                        <th>Mô tả</th>
+                        <th>Chức năng</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenChucVu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HeSoLuong)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MoTa)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("XoaChucVu","ChucVu", new { id = item.MaChucVu })"><input type="submit" class="btn btn-primary" value="Xóa" /></a>
+                            <a href="@Url.Action("SuaChucVu","ChucVu", new { id = item.MaChucVu })"><input type="submit" class="btn btn-primary" value="Chỉnh sửa" /></a>
+                            <a href="@Url.Action("DanhSachNhanVienChucVu","ChucVu", new { id = item.MaChucVu })"><input type="submit" class="btn btn-primary" value="Danh sách nhân viên" /></a>
+                        </td>
+                    </tr>
+                    }
+                    <tr>
+                        <td colspan="5">
+                            <a href="/ChucVu/ThemChucVu"><input type="submit" class="btn btn-primary" value="Thêm chức vụ" /></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+

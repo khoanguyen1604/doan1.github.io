@@ -1,0 +1,67 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.PHONGBAN>
+
+@{
+    ViewBag.Title = "DanhSachPhongBan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Danh sách phòng ban
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Tên phòng ban</th>
+                        <th>Số nhân viên tối đa</th>
+                        <th>Số nhân viên hiện tại</th>
+                        <th>Ghi chú</th>
+                        <th>Chức năng</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenPhongBan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoNhanVienToiDa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoNhanVienHienTai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MoTa)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("XoaPhongBan", "PhongBan", new { id = item.MaPhongBan })">
+                                <input type="submit" class="btn btn-primary" value="Xóa" />
+                            </a>
+                            <a href="@Url.Action("SuaPhongBan","PhongBan", new { id = item.MaPhongBan })"><input type="submit" class="btn btn-primary" value="Chỉnh sửa" /></a>
+                            <a href="@Url.Action("DanhSachNhanVienPhongBan","PhongBan", new { id = item.MaPhongBan })"><input type="submit" class="btn btn-primary" value="Danh sách nhân viên" /></a>
+                            @{ if (Session["error"] != null && int.Parse(Session["id"].ToString()) == item.MaPhongBan)
+                                {
+                                    <div style="color:red">@Session["error"].ToString()</div>
+                                }
+                            }
+                        </td>
+                    </tr>
+                    }
+                    <tr>
+                        <td colspan="5">
+                            <a href="/PhongBan/ThemPhongBan"><input type="submit" class="btn btn-primary" value="Thêm phòng ban"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+

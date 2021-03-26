@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <link href="~/Content/Css/Style_layout.css" rel="stylesheet" />
+    @*<script src="~/js/ckeditor/ckeditor.js"></script>*@
+    <script>
+        $(function () {
+            var current = location.pathname;
+            var current1 = location.pathname;
+            var c = current1.split('/');
+            var cur ='/' + c[1]+ '/' + c[2];
+            $('.menu > ul > li > a + .submenu ul li a').removeClass('active')
+            $('.menu > ul > li > a + .submenu ul li a').each(function () {
+                var $this = $(this);
+                if ($this.attr('href').indexOf(current) !== -1) {
+                    $this.addClass('active')
+                    $this.parents(".menu > ul > li").addClass('active')
+                    
+                }
+                if (current == "/Employee/SuaThongTinCaNhan_Admin/QL-1" || current == "/Employee/SuaThongTinLienLac_Admin/QL-1" || cur == "/Login/ThayDoiMatKhau") {
+                    $(".menu > ul > li.a").addClass('active')
+                    $(".submenu > ul > li >a.a_hosocanhan").addClass('active')
+                }
+                else if (current == "/PhongBan/ThemPhongBan" || cur == "/PhongBan/DanhSachNhanVienPhongBan" || cur == "/PhongBan/SuaPhongBan") {
+                    $(".menu > ul > li.b").addClass('active')
+                    $(".submenu > ul > li >a.b_phongban").addClass('active')
+                }
+                else if (current == "/TAIKHOANs/Create") {
+                    $(".menu > ul > li.b").addClass('active')
+                    $(".submenu > ul > li >a.b_taikhoan").addClass('active')
+                }
+                else if (current == "/ChucVu/ThemChucVu" || cur == "/ChucVu/SuaChucVu" || cur == "/ChucVu/DanhSachNhanVienChucVu") {
+                    $(".menu > ul > li.b").addClass('active')
+                    $(".submenu > ul > li >a.b_chucvu").addClass('active')
+                }
+                else if (current == "/Employee/ThemNhanVien" || cur == "/Employee/SuaNhanVien") {
+                    $(".menu > ul > li.a").addClass('active')
+                    $(".submenu > ul > li >a.a_hosonhansu").addClass('active')
+                }
+                else if (current == "/BangLuong/BangLuong" || current == "/Reports/ReportBangLuong") {
+                    $(".menu > ul > li.d").addClass('active')
+                    $(".submenu > ul > li >a.d_bangluong").addClass('active')
+                }
+                else if (cur == "/BangLuong/TinhLuong") {
+                    $(".menu > ul > li.d").addClass('active')
+                    $(".submenu > ul > li >a.d_bangluong").addClass('active')
+                }
+                else if (current == "/KhenThuongKyLuat/Them") {
+                    $(".menu > ul > li.a").addClass('active')
+                    $(".submenu > ul > li >a.a_khenthuongkyluat").addClass('active')
+                }
+                else if (cur == "/KhenThuongKyLuat/Sua") {
+                    $(".menu > ul > li.a").addClass('active')
+                    $(".submenu > ul > li >a.a_khenthuongkyluat").addClass('active')
+                }
+                else if (current == "/HopDong/Them" || cur == "/HopDong/Sua") {
+                    $(".menu > ul > li.e").addClass('active')
+                    $(".submenu > ul > li >a.e_hopdong").addClass('active')
+                }
+                //else if (cur == "/PhongBan/DanhSachNhanVienPhongBan") {
+                //    $(".menu > ul > li.b").addClass('active')
+                //    $(".submenu > ul > li >a.b_phongban").addClass('active')
+                //}
+                //else if (cur == "/PhongBan/SuaPhongBan") {
+                //    $(".menu > ul > li.b").addClass('active')
+                //    $(".submenu > ul > li >a.b_phongban").addClass('active')
+                //}
+                //else if (cur == "/ChucVu/SuaChucVu") {
+                //    $(".menu > ul > li.b").addClass('active')
+                //    $(".submenu > ul > li >a.b_chucvu").addClass('active')
+                //}
+                //else if (cur == "/ChucVu/SuaChucVu") {
+                //    $(".menu > ul > li.b").addClass('active')
+                //    $(".submenu > ul > li >a.b_chucvu").addClass('active')
+                //}
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <div class="top container-fluid" align="center">
+            <div><img style="width: 100%; height:50%;" src="~/Content/Images/banner_IHRM.jpg" alt="image banner" /></div>
+            <div class="menu">
+                <ul>
+                    <li class="b">
+                        <a href="/TAIKHOANs/Index">Chức năng chung</a>
+                        <div class="submenu">
+                            <ul>
+                                <li><a class="active b_taikhoan" href="/TAIKHOANs/Index">Tài khoản</a></li>
+                                <li><a class="b_phongban" href="/PhongBan/DanhSachPhongBan">Phòng ban</a></li>
+                                <li><a class="b_chucvu" href="/ChucVu/ChucVu">Chức vụ</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="a">
+                        <a href="/Employee/HoSoNhanSu">Quản lý hồ sơ</a>
+                        <div class="submenu">
+                            <ul>
+                                <li><a class="a_hosonhansu" href="/Employee/HoSoNhanSu">Hồ sơ nhân sự</a></li>
+                                <li><a class="a_hosocanhan" href="/Employee/ThongTinCaNhan_Admin">Hồ sơ cá nhân</a></li>
+                                @*<li><a href="#">Quá trình công tác</a></li>*@
+                                <li><a class="a_khenthuongkyluat" href="/KhenThuongKyLuat/KhenThuongKyLuat">Khen thưởng kỷ luật</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/ChamCong/ChamCong">Chấm công</a>
+                        <div class="submenu">
+                            <ul>
+                                <li><a href="/ChamCong/ChamCong">Bảng chấm công</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="e">
+                        <a href="/HopDong/DanhSachHopDong">Theo dõi nhân sự</a>
+                        <div class="submenu">
+                            <ul>
+                                <li><a class="e_hopdong" href="/HopDong/DanhSachHopDong">Hợp đồng</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="d">
+                        <a href="/BangLuong/BangLuong">Tính lương</a>
+                        <div class="submenu">
+
+                            </div>
+                    </li>
+                    @*<li>
+                        <a href="#">Đánh giá</a>
+                        <div class="submenu">
+
+                            </div>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+        <div class="content container-fluid">
+            @RenderBody()
+        </div>
+    </div>
+    <footer>
+        <div class="footer" style="text-align:center; margin-top:50px;">Vui lòng không lưu mật khẩu</div>
+        <div class="footer" style="text-align:center; margin-bottom:50px;">	&#64; 2019-2020 | <u>Hướng dẫn sử dụng</u> | <u>Phần mềm nhân sự</u> | <u>Phần mềm công việc</u></div>
+    </footer>
+</body>
+</html>
+@*<script>
+    $(document).ready(function () {
+        $('.menu ul li a').click(function () {
+            $('a').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+    $(document).ready(function () {
+        $('.submenu ul li a').click(function () {
+            $('a').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>*@

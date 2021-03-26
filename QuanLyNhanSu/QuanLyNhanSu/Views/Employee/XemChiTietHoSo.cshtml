@@ -1,0 +1,88 @@
+﻿@model QuanLyNhanSu.Models.NHANVIEN
+@{
+    ViewBag.Title = "ThongTinCaNhan_Admin";
+    Layout = "~/Views/Shared/_Layout_ChiTietNhanVien.cshtml";
+}
+
+<head>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+<body class="content container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-11">
+            <div class="card">
+                <div class="card-header">
+                    Thông tin nhân viên
+                </div>
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th>First Name</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.FirstName)</div>
+                            </td>
+                            <th>Last Name</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.LastName)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Mã số nhân viên</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.MaNhanVien)</div>
+                            </td>
+                            <th>Mã số khác</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.MaSoKhac)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Chứng minh nhân dân</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.ChungMinhThu)</div>
+                            </td>
+                            <th>Ngày cấp</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.NgayCap)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Giới tính</th>
+                            <td>
+                                <div class="output">
+                                    @Html.DisplayFor(m => m.GioiTinh)
+                                </div>
+                            </td>
+                            <th>Tình trạng hôn nhân</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.TinhTrangHonNhan)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Quốc tịch</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.QuocTich)</div>
+                            </td>
+                            <th>Ngày sinh</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.NgaySinh)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Tên gọi khác</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.TenGoiKhac)</div>
+                            </td>
+                            <th>Sở thích</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.SoThich)</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

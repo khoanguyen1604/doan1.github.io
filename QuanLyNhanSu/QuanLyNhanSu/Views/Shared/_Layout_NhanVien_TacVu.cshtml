@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <link href="~/Content/Css/Style_layout.css" rel="stylesheet" />
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            var current = location.pathname;
+            $('.menu ul li').removeClass('active')
+            $('.menu ul li a').each(function () {
+                var $this = $(this);
+                if ($this.attr('href').indexOf(current) !== -1) {
+                    //$this.addClass('active')
+                    $this.parents(".menu > ul > li").addClass('active')
+                }
+                if (current == "/Login/ThayDoiMatKhau") {
+                    $(".menu > ul > li.a").addClass('active')
+                }
+            })
+        })
+        //$(function () {
+        //    var current1 = location.pathname;
+        //    $('#thongtin ul li a').removeClass('active')
+        //    $('#thongtin ul li a').each(function () {
+        //        var $this = $(this);
+        //        if ($this.attr('href').indexOf(current1) !== -1) {
+        //            $this.addClass('active')
+        //            $('.menu > ul li.a').addClass('active')
+        //            $('.submenu > ul li .b').addClass('active')
+        //        }
+        //    })
+        //})
+    </script>
+</head>
+<body>
+    <div>
+        <div class="top container-fluid" align="center">
+            <div><img style="width: 100%; height:100%;" src="~/Content/Images/banner_IHRM.jpg" alt="image banner" /></div>
+            <div class="menu">
+                <ul>
+                    <li class="active a">
+                        <a href="/Employee/ThongTinCaNhan">Hồ sơ cá nhân</a>
+                        <div class="submenu">
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/ChamCong/BangChamCong_NhanVien">Bảng chấm công</a>
+                        <div class="submenu">
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/BangLuong/BangTinhLuong_NhanVien">Bảng tính lương</a>
+                        <div class="submenu">
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/KhenThuongKyLuat/ThanhTichThiDua">Thành tích thi đua</a>
+                        <div class="submenu">
+                        </div>
+                    </li>
+                    @*<li>
+                        <a href="#">Đánh giá</a>
+                        <div class="submenu">
+                        </div>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer" style="text-align:center; margin-top:50px;">Vui lòng không lưu mật khẩu</div>
+        <div class="footer" style="text-align:center; margin-bottom:50px;">	&#64; 2019-2020 | <u>Hướng dẫn sử dụng</u> | <u>Phần mềm nhân sự</u> | <u>Phần mềm công việc</u></div>
+    </footer>
+</body>
+</html>

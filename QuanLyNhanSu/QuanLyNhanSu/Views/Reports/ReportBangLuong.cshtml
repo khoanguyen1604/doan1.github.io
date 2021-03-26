@@ -1,0 +1,80 @@
+﻿@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "ReportEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                format: 'mm/yyyy',
+                startDate: '-3d'
+            });
+        });
+        //$(function () {
+        //    $('.datepicker').datepicker({
+        //        changeMonth: true,
+        //        changeYear: true,
+        //        showButtonPanel: true,
+        //        dateFormat: 'mm/yy',
+        //        onClose: function (dateText, inst) {
+        //            $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 0));
+        //        }
+        //    });
+        //});
+
+    </script>
+</head>
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-5">
+            @using (Html.BeginForm("ReportBangLuong", "Reports"))
+            {
+                <div class="form-group">
+                    <b>@Html.Label("Ngày tính lương")</b>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @Html.Editor("thang", new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            </div>
+                            <div class="col-lg-4">
+                                <input style="display:inline" type="submit" class="btn btn-primary" value="Lọc" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div style="margin-left:20%">
+                <div>
+                    @Html.ActionLink("Xuất báo cáo", "Report", new { ReportType = "Excel" })
+                </div>
+                @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+
+@*<div>
+    <br />
+    <div>
+        <div align="right">
+            @Html.ActionLink("Xuất báo cáo", "Report", new { ReportType = "Excel" })
+        </div>
+        <div align="center">
+            @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+        </div>
+    </div>
+    
+</div>*@

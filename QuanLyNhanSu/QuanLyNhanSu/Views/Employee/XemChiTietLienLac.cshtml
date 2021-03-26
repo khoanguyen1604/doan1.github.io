@@ -1,0 +1,67 @@
+﻿@model QuanLyNhanSu.Models.NHANVIEN
+@{
+    ViewBag.Title = "ChiTietLienLac";
+    Layout = "~/Views/Shared/_Layout_ChiTietNhanVien.cshtml";
+}
+
+<head>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+<body class="content container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-11">
+            <div class="card">
+                <div class="card-header">
+                    Thông tin liên lạc
+                </div>
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th>Địa chỉ</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.DiaChi)</div>
+                            </td>
+                            <th>Quận/Huyện</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.QuanHuyen)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Thành phố/Tỉnh</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.ThanhPho)</div>
+                            </td>
+                            <th>Quốc gia</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.QuocTich)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Điện thoại riêng</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.SDTRieng)</div>
+                            </td>
+                            <th>Điện thoại công việc</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.SDTCongViec)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email cá nhân</th>
+                            <td>
+                                <div class="output">
+                                    @Html.DisplayFor(m => m.MailCaNhan)
+                                </div>
+                            </td>
+                            <th>Email công việc</th>
+                            <td>
+                                <div class="output">@Html.DisplayFor(m => m.MailCongViec)</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

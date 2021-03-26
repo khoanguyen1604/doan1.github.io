@@ -1,0 +1,68 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.NHANVIEN>
+@{
+    ViewBag.Title = "HoSoNhanSu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+</head>
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Hồ sơ nhân sự
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Hình ảnh</th>
+                        <th>Họ Tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Chức Vụ</th>
+                        <th>Phòng ban</th>
+                        <th>Tác vụ</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            <img src="~/Content/Images/@Url.Content(item.HinhAnh)" style="width:100px; height:100px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.FirstName) @Html.DisplayFor(m => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.SDTCongViec)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.MailCongViec)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.MaChucVu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.MaPhongBan)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("XoaNhanVien","Employee", new { id = item.MaNhanVien })"><input type="submit" class="btn btn-primary" value="Xóa" /></a>
+                            <a href="@Url.Action("SuaNhanVien","Employee", new { id = item.MaNhanVien })"><input type="submit" class="btn btn-primary" value="Chỉnh sửa" /></a>
+                            <a href="@Url.Action("XemChiTietHoSo","Employee", new { id = item.MaNhanVien })"><input type="submit" class="btn btn-primary" value="Xem chi tiết" /></a>
+                        </td>
+                    </tr>
+                    }
+                    <tr>
+                        <td colspan="7">
+                            <a href="/Employee/ThemNhanVien"><input type="submit" class="btn btn-primary" value="Thêm" /></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+

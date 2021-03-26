@@ -1,0 +1,139 @@
+﻿@model QuanLyNhanSu.Models.BangLuong
+
+@{
+    ViewBag.Title = "TinhLuong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h2 style="text-align:center;">Bảng tính lương</h2>
+                <br />
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.IDBangLuong)
+                @*@Html.HiddenFor(model => model.TongLuong)*@
+                @Html.HiddenFor(model => model.Thang)
+                @Html.HiddenFor(model => model.MaNhanVien)
+                @Html.HiddenFor(model => model.SoNgayLam)
+                @Html.HiddenFor(model => model.SoNgayNghi)
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-2"><b>Mã nhân viên</b></div>
+                        <div class="col-lg-3" style="background-color:#d7d7d7; border-radius:3px;">@Model.MaNhanVien</div>
+                        <div class="col-lg-2"><b>Tên nhân viên</b></div>
+                        <div class="col-lg-3" style="background-color:#d7d7d7; border-radius:3px;">@Model.Nhanvien.FirstName @Model.Nhanvien.LastName</div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-2"><b>Tháng</b></div>
+                        @{
+                            var thang = Model.Thang.ToString("MM/yyyy");
+                        }
+                        <div class="col-lg-3" style="background-color:#d7d7d7; border-radius:3px;">@thang</div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-2"><b>Số ngày làm</b></div>
+                        <div class="col-lg-3" style="background-color:#d7d7d7; border-radius:3px;">@Model.SoNgayLam</div>
+                        <div class="col-lg-2"><b>Số ngày nghỉ</b></div>
+                        <div class="col-lg-3" style="background-color:#d7d7d7; border-radius:3px;">@Model.SoNgayNghi</div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-2"><b>Chức vụ</b></div>
+                        <div class="col-lg-3" style="background-color:#d7d7d7; border-radius:3px;">@Model.Nhanvien.ChucVu.TenChucVu</div>
+                        <div class="col-lg-2"><b>Hệ số lương</b></div>
+                        <div class="col-lg-3" style="background-color:#d7d7d7; border-radius:3px;">@Model.Nhanvien.ChucVu.HeSoLuong</div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-2"><b>Lương cơ bản</b></div>
+                        <div class="col-lg-3" style="background-color:#d7d7d7; border-radius:3px;">@string.Format("{0:n0}", Model.Nhanvien.LuongCoBan) VND</div>
+                    </div>
+                    @*<br />
+                    <div class="row">
+                        <div class="col-lg-6" style="padding:0">
+                            <div class="form-group">
+                                <b>@Html.Label("Lương cơ bản", htmlAttributes: new { @class = "control-label col-lg-2" })</b>
+                                <div class="col-lg-10">
+                                    @Html.DisplayFor(model => model.Nhanvien.LuongCoBan, new { htmlAttributes = new { @class = "form-control" }, @style = "background-color:#d7d7d7; border-radius:3px;" })
+                                    @Html.ValidationMessageFor(model => model.Nhanvien.LuongCoBan, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-5" style="padding:0">
+                            <div class="form-group">
+                                <b>@Html.Label("Lương thưởng", htmlAttributes: new { @class = "control-label col-md-3" })</b>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.LuongThuong, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LuongThuong, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5" style="padding:0">
+                            <div class="form-group">
+                                <b>@Html.Label("Lương trừ", htmlAttributes: new { @class = "control-label col-md-2" })</b>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.LuongTru, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LuongTru, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    @*<div class="row">
+                        
+
+                    </div>
+                    <br />*@
+                    <div class="row">
+                        <div class="col-lg-12" style="padding:0">
+                            <div class="form-group">
+                                <b>@Html.Label("Ghi chú", htmlAttributes: new { @class = "control-label col-md-2" })</b>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-6" style="padding:0">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Lưu" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            }
+            <div>
+                @Html.ActionLink("Quay lại", "BangLuong")
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+
+

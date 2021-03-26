@@ -1,0 +1,121 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.CHAMCONG>
+@{
+    ViewBag.Title = "BangChamCong_NhanVien";
+    Layout = "~/Views/Shared/_Layout_NhanVien_TacVu.cshtml";
+}
+
+<head>
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
+</head>
+
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <div class="col-lg-4" style="margin-left:-15px!important;">
+                <div class="card">
+                    <div class="card-header" style="text-align: center;">
+                        <b>@Session["ten"]</b>
+                    </div>
+                    <img src="~/Content/Images/@Session["hinhanh"]" class="card-img-bottom" style="width:100%;" />
+                </div>
+            </div>
+            <br />
+            @using (Html.BeginForm("BangChamCong_NhanVien", "ChamCong"))
+            {
+                <div class="form-group">
+                    <b>@Html.Label("Ngày chấm công")</b>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @Html.Editor("ngay", new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            </div>
+                            <div class="col-lg-4">
+                                <input style="display:inline" type="submit" class="btn btn-primary" value="Lọc" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            @*<div>
+            <table>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>    </th>
+                    <th>Họ tên</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="~/Content/Images/@Session["hinhanh"].ToString()" style="width:100px; height:100px;" />
+                    </td>
+                    <td>    </td>
+                    <td>
+                        @Session["ten"].ToString()
+                    </td>
+                </tr>
+            </table>
+        </div>*@
+            
+            
+            <div class="card">
+                <div class="card-header">
+                    Chấm công
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        @*<th>Hình ảnh</th>
+                    <th>Họ Tên</th>*@
+                        <th>Ngày</th>
+                        <th>Trạng thái</th>
+                        @*<th>Tác vụ</th>*@
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>
+                            <img src="~/Content/Images/@Url.Content(item.Nhanvien.HinhAnh)" style="width:100px; height:100px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Nhanvien.FirstName) @Html.DisplayFor(m => item.Nhanvien.LastName)
+                        </td>*@
+                            @{
+                                var ngay = item.Ngay.ToString("dd/MM/yyyy");
+                            }
+                            <td>@ngay</td>
+                            <td>
+                                @if (item.TrangThai == null)
+                                {
+                                    <div>Chưa chấm công</div>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(m => item.TrangThai)
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </table>
+                @*@Html.PagedListPager(Model, trang => Url.Action("ChamCong", new { trang }))*@
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>

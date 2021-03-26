@@ -1,0 +1,114 @@
+﻿@model IEnumerable<QuanLyNhanSu.Models.BangLuong>
+@{
+    ViewBag.Title = "BangTinhLuong_NhanVien";
+    Layout = "~/Views/Shared/_Layout_NhanVien_TacVu.cshtml";
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function () {
+            $('.datepicker').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'mm/yy',
+                onClose: function (dateText, inst) {
+                    $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 0));
+                }
+            });
+        });
+
+    </script>
+</head>
+
+<body class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <div class="col-lg-4" style="margin-left:-15px!important;">
+                <div class="card">
+                    <div class="card-header" style="text-align: center;">
+                        <b>@Session["ten"]</b>
+                    </div>
+                    <img src="~/Content/Images/@Session["hinhanh"]" class="card-img-bottom" style="width:100%;" />
+                </div>
+            </div>
+            <br />
+            @using (Html.BeginForm("BangTinhLuong_NhanVien", "BangLuong"))
+            {
+                <div class="form-group">
+                    <b>@Html.Label("Tháng")</b>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @Html.Editor("thang", new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            </div>
+                            <div class="col-lg-4">
+                                <input style="display:inline" type="submit" class="btn btn-primary" value="Lọc" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Bảng Lương
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Hình ảnh</th>
+                        <th>Họ Tên</th>
+                        <th>Thông tin</th>
+                        <th>Tiền</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/Content/Images/@Url.Content(item.Nhanvien.HinhAnh)" style="width:100px; height:100px;" />
+                            </td>
+                            <td>@Html.DisplayFor(m => item.Nhanvien.FirstName) @Html.DisplayFor(m => item.Nhanvien.LastName)</td>
+                            <td>
+                                @if (item.SoNgayLam == 0 && item.SoNgayNghi == 0)
+                                {
+                                    <div>Chưa tính lương</div>
+                                }
+                                else
+                                {
+                                    <div>Số ngày đi làm: <b>@Html.DisplayFor(m => item.SoNgayLam)</b></div>
+                                    <div>Số ngày nghỉ: <b style="color:red">@Html.DisplayFor(m => item.SoNgayNghi)</b></div>
+                                }
+                            </td>
+                            <td>
+                                @if (item.TongLuong == 0)
+                                {
+                                    <div>Chưa tính</div>
+                                }
+                                else
+                                {
+                                    <div>Lương cơ bản: <b>@string.Format("{0:n0}", item.TongLuong) VND</b></div>
+                                    <div>Tiền thưởng: <b>@string.Format("{0:n0}", item.LuongThuong) VND</b></div>
+                                    <div>Tiền trừ: <b>@string.Format("{0:n0}", item.LuongTru) VND</b></div>
+                                    <div>Tổng tiền: <b>@string.Format("{0:n0}", item.TongLuong) VND</b></div>
+                                }
+                            </td>
+                            <td>@Html.DisplayFor(m => item.GhiChu)</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
